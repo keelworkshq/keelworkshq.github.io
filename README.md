@@ -17,9 +17,9 @@ contact/                contact page
 assets/style.css        shared styles
 ```
 
-## Known placeholder, needs a real value
+## Contact email
 
-`contact/index.html` has a placeholder email (`hello@keelworks.in`) since no domain or professional email exists yet. Update this once Stage 1 of the business plan (professional email setup) is done.
+Currently using `naveen1806@yahoo.co.in` (personal inbox) in `contact/index.html` since there's no business domain yet. Switch to a professional address once Stage 1 of the business plan (domain + professional email) is done.
 
 ## Deploy
 
