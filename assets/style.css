@@ -333,6 +333,8 @@ header.site nav a:hover {
 }
 
 .card a.more {
+  display: block;
+  margin-top: 10px;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;

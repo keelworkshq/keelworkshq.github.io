@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Contact | Keelworks">
 <meta name="twitter:description" content="Get in touch with Keelworks about Cloud, DevOps, Managed IT, cloud migration, technical recruitment or training.">
-<link rel="stylesheet" href="/assets/style.css?v=20261012-2">
+<link rel="stylesheet" href="/assets/style.css?v=20261012-4">
 </head>
 <body>
 
@@ -166,6 +166,45 @@
     </form>
 
     <script>
+      (function () {
+        var topicMap = {
+          pilot: {
+            checkboxes: ['Nepal digital-impact partnership'],
+            note: "I'm interested in the Digital Operations Improvement Pilot in Nepal.\n\n",
+            orgtype: 'Small or medium business'
+          },
+          training: {
+            checkboxes: ['Nepal digital-impact partnership', 'Training or education partnership'],
+            note: 'I represent a college or training institution and would like to explore a workshop or training partnership in Nepal.\n\n',
+            orgtype: 'College or training institution'
+          },
+          collab: {
+            checkboxes: ['Nepal digital-impact partnership'],
+            note: "I'm a technology professional interested in future collaboration with Keelworks Nepal.\n\n"
+          }
+        };
+
+        var params = new URLSearchParams(window.location.search);
+        var topic = topicMap[params.get('topic')];
+        if (!topic) return;
+
+        topic.checkboxes.forEach(function (value) {
+          var cb = document.querySelector('input[name="topic"][value="' + value + '"]');
+          if (cb) cb.checked = true;
+        });
+
+        var problemField = document.getElementById('f-problem');
+        if (problemField) problemField.value = topic.note;
+
+        if (topic.orgtype) {
+          var orgtypeField = document.getElementById('f-orgtype');
+          if (orgtypeField) orgtypeField.value = topic.orgtype;
+        }
+
+        var locationField = document.getElementById('f-location');
+        if (locationField) locationField.value = 'Nepal';
+      })();
+
       document.getElementById('enquiry-form').addEventListener('submit', function (e) {
         e.preventDefault();
         var name = document.getElementById('f-name').value;
@@ -237,7 +276,7 @@
   </div>
 </footer>
 
-<script src="/assets/region-switch.js?v=20261012-2" defer></script>
-<script src="/assets/region-banner.js?v=20261012-2" defer></script>
+<script src="/assets/region-switch.js?v=20261012-4" defer></script>
+<script src="/assets/region-banner.js?v=20261012-4" defer></script>
 </body>
 </html>
