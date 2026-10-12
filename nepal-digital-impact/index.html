@@ -26,10 +26,15 @@
     <a class="logo" href="/">Keel<span>works</span></a>
     <nav>
       <a href="/services/">Services</a>
-      <select class="region-switch" aria-label="Region" onchange="window.location.href=this.value;">
-        <option value="/">Global site</option>
-        <option value="/nepal-digital-impact/" selected>Nepal</option>
-      </select>
+      <div class="region-switch">
+        <button type="button" class="region-switch-toggle" aria-haspopup="true" aria-expanded="false">
+          Nepal <span class="chev">&#9662;</span>
+        </button>
+        <ul class="region-switch-menu">
+          <li><a href="/">Global</a></li>
+          <li><a href="/nepal-digital-impact/" class="is-current">Nepal</a></li>
+        </ul>
+      </div>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
     </nav>
@@ -152,6 +157,7 @@
   </div>
 </footer>
 
+<script src="/assets/region-switch.js" defer></script>
 <script src="/assets/region-banner.js" defer></script>
 </body>
 </html>

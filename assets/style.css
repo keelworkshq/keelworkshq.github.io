@@ -101,8 +101,15 @@ header.site nav a:hover {
   color: #fff;
 }
 
-header.site nav select.region-switch {
+.region-switch {
+  position: relative;
   margin-left: 28px;
+}
+
+.region-switch-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: transparent;
   border: 1px solid #3a5a78;
   border-radius: 6px;
@@ -110,20 +117,65 @@ header.site nav select.region-switch {
   font-size: 0.88rem;
   font-weight: 500;
   font-family: inherit;
-  padding: 5px 8px;
+  padding: 6px 10px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-header.site nav select.region-switch:hover,
-header.site nav select.region-switch:focus {
+.region-switch-toggle .chev {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  transition: transform 0.15s ease;
+}
+
+.region-switch-toggle:hover,
+.region-switch-toggle[aria-expanded="true"] {
   border-color: var(--accent);
   color: #fff;
-  outline: none;
 }
 
-header.site nav select.region-switch option {
-  background: var(--navy);
+.region-switch-toggle[aria-expanded="true"] .chev {
+  transform: rotate(180deg);
+}
+
+.region-switch-menu {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 150px;
+  background: var(--navy-light);
+  border: 1px solid #3a5a78;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  z-index: 50;
+  display: none;
+}
+
+.region-switch-menu.is-open {
+  display: block;
+}
+
+.region-switch-menu a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 5px;
+  color: #cfd9ea;
+  text-decoration: none;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.region-switch-menu a:hover {
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
+}
+
+.region-switch-menu a.is-current {
+  color: #fff;
+  font-weight: 700;
 }
 
 
@@ -553,11 +605,19 @@ footer.site .wrap {
     margin-right: 0;
   }
 
-  header.site nav select.region-switch {
+  .region-switch {
     margin-left: 0;
     margin-right: 22px;
+  }
+
+  .region-switch-toggle {
     font-size: 0.85rem;
-    padding: 4px 6px;
+    padding: 5px 8px;
+  }
+
+  .region-switch-menu {
+    right: auto;
+    left: 0;
   }
 
 
@@ -684,8 +744,11 @@ footer.site .wrap {
     font-size: 0.88rem;
   }
 
-  header.site nav select.region-switch {
+  .region-switch {
     margin-right: 16px;
+  }
+
+  .region-switch-toggle {
     font-size: 0.8rem;
   }
 
