@@ -101,6 +101,31 @@ header.site nav a:hover {
   color: #fff;
 }
 
+header.site nav select.region-switch {
+  margin-left: 28px;
+  background: transparent;
+  border: 1px solid #3a5a78;
+  border-radius: 6px;
+  color: #cfd9ea;
+  font-size: 0.88rem;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+header.site nav select.region-switch:hover,
+header.site nav select.region-switch:focus {
+  border-color: var(--accent);
+  color: #fff;
+  outline: none;
+}
+
+header.site nav select.region-switch option {
+  background: var(--navy);
+  color: #fff;
+}
+
 
 /* =========================
    Hero
@@ -528,6 +553,13 @@ footer.site .wrap {
     margin-right: 0;
   }
 
+  header.site nav select.region-switch {
+    margin-left: 0;
+    margin-right: 22px;
+    font-size: 0.85rem;
+    padding: 4px 6px;
+  }
+
 
   /* Hero */
 
@@ -649,6 +681,78 @@ footer.site .wrap {
 
   header.site nav a {
     margin-right: 16px;
+    font-size: 0.88rem;
+  }
+
+  header.site nav select.region-switch {
+    margin-right: 16px;
+    font-size: 0.8rem;
+  }
+
+}
+
+
+/* =========================
+   Region banner
+   ========================= */
+
+.region-banner {
+  background: var(--accent);
+}
+
+.region-banner .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding: 11px 24px;
+}
+
+.region-banner p {
+  margin: 0;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.region-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.region-banner-actions a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: underline;
+}
+
+.region-banner-actions button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  opacity: 0.85;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.region-banner-actions button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+
+  .region-banner .wrap {
+    padding: 10px 20px;
+    justify-content: flex-start;
+  }
+
+  .region-banner p {
     font-size: 0.88rem;
   }
 
