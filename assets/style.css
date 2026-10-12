@@ -215,16 +215,6 @@ header.site nav a:hover {
   color: #fff;
 }
 
-.lang-draft-note {
-  background: #fcefe4;
-  border-bottom: 1px solid var(--line);
-  color: var(--accent-dark);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 10px 0;
-  text-align: center;
-}
-
 
 /* =========================
    Hero
