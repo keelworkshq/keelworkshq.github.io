@@ -26,6 +26,7 @@
     <a class="logo" href="/">Keel<span>works</span></a>
     <nav>
       <a href="/services/">Services</a>
+      <a href="/nepal-digital-impact/">Nepal Initiative</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
     </nav>
@@ -99,6 +100,91 @@
 </section>
 
 <section class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Send an enquiry</div>
+    <h2>Tell us about your project</h2>
+    <p style="max-width: 650px;">Fill this in and it opens a pre-filled email to us, nothing is submitted to a server or stored anywhere else.</p>
+
+    <form id="enquiry-form" style="max-width: 650px; margin-top: 30px;">
+      <div class="form-group">
+        <label class="field-label" for="f-name">Name</label>
+        <input type="text" id="f-name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="f-email">Email</label>
+        <input type="email" id="f-email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">What do you need help with?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="topic" value="Cloud & DevOps"> Cloud &amp; DevOps</label>
+          <label><input type="checkbox" name="topic" value="Managed IT & Cloud Operations"> Managed IT &amp; Cloud Operations</label>
+          <label><input type="checkbox" name="topic" value="Automation and modernisation"> Automation and modernisation</label>
+          <label><input type="checkbox" name="topic" value="Training or education partnership"> Training or education partnership</label>
+          <label><input type="checkbox" name="topic" value="Nepal digital-impact partnership"> Nepal digital-impact partnership</label>
+          <label><input type="checkbox" name="topic" value="Recruitment"> Recruitment</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="f-orgtype">Organisation type</label>
+        <select id="f-orgtype" name="orgtype">
+          <option>Small or medium business</option>
+          <option>IT company or startup</option>
+          <option>College or training institution</option>
+          <option>NGO or development organisation</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="f-location">Where is your organisation based?</label>
+        <select id="f-location" name="location">
+          <option>Nepal</option>
+          <option>India</option>
+          <option>Other international location</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="f-problem">Describe the problem or opportunity</label>
+        <textarea id="f-problem" name="problem" required></textarea>
+      </div>
+
+      <button type="submit" class="btn" style="border:none;cursor:pointer;">Send enquiry</button>
+      <p class="form-note">This opens your email app with the details filled in, so you can review it before it sends.</p>
+    </form>
+
+    <script>
+      document.getElementById('enquiry-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('f-name').value;
+        var email = document.getElementById('f-email').value;
+        var topics = Array.prototype.slice.call(document.querySelectorAll('input[name="topic"]:checked')).map(function (el) { return el.value; });
+        var orgtype = document.getElementById('f-orgtype').value;
+        var location = document.getElementById('f-location').value;
+        var problem = document.getElementById('f-problem').value;
+
+        var body = 'Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'What they need help with: ' + (topics.length ? topics.join(', ') : 'Not specified') + '\n' +
+          'Organisation type: ' + orgtype + '\n' +
+          'Based in: ' + location + '\n\n' +
+          'Problem or opportunity:\n' + problem;
+
+        var mailto = 'mailto:naveen1806@yahoo.co.in' +
+          '?subject=' + encodeURIComponent('Keelworks enquiry from ' + name) +
+          '&body=' + encodeURIComponent(body);
+
+        window.location.href = mailto;
+      });
+    </script>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
     <div class="eyebrow">What happens next</div>
     <h2>Start with a conversation, not a sales pitch.</h2>
