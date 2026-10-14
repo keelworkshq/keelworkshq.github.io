@@ -14,7 +14,11 @@ services/managed-it/    Managed IT Infrastructure service + pricing
 services/recruitment/   Cloud & DevOps Recruitment service
 about/                  about page
 contact/                contact page
+nepal-digital-impact/   Keelworks Nepal initiative page (EN/Nepali toggle)
 assets/style.css        shared styles
+favicon.svg             favicon source (edit this, then regenerate the rest)
+favicon.ico             multi-res fallback (16/32/48px), generated from favicon.svg
+assets/favicon-32x32.png, assets/apple-touch-icon.png   generated from favicon.svg
 ```
 
 ## Contact email
