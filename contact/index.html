@@ -138,7 +138,8 @@
 
       <div class="form-group">
         <label class="field-label" for="f-orgtype">Organisation type</label>
-        <select id="f-orgtype" name="orgtype">
+        <select id="f-orgtype" name="orgtype" required>
+          <option value="" disabled selected>Select one</option>
           <option>Small or medium business</option>
           <option>IT company or startup</option>
           <option>College or training institution</option>
@@ -149,7 +150,8 @@
 
       <div class="form-group">
         <label class="field-label" for="f-location">Where is your organisation based?</label>
-        <select id="f-location" name="location">
+        <select id="f-location" name="location" required>
+          <option value="" disabled selected>Select one</option>
           <option>Nepal</option>
           <option>India</option>
           <option>Other international location</option>
