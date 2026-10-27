@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://keelworkshq.github.io/sitemap.xml
+Sitemap: https://keelwork.github.io/sitemap.xml

@@ -1,8 +1,8 @@
-# keelworkshq.github.io
+# keelwork.github.io
 
 Marketing site for Keelworks (Cloud, Infrastructure, DevOps, Talent), hosted free on GitHub Pages while the business is pre-revenue. Plain static HTML/CSS, no build step, no framework, on purpose, there's no reason to add build tooling for a handful of static pages.
 
-Lives under its own account (`keelworkshq`), separate from any other GitHub account, so this stays fully independent.
+Lives under its own GitHub organisation (`keelwork`, owned by the `keelworkshq` account), separate from any other GitHub account, so this stays fully independent. The old address, keelworkshq.github.io, redirects here.
 
 ## Structure
 
