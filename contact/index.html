@@ -173,6 +173,11 @@
       <!-- Honeypot: hidden from people, bots tend to fill it in and get dropped by Web3Forms -->
       <input type="checkbox" name="botcheck" id="f-botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
+      <!-- hCaptcha via Web3Forms (free plan, shared site key). Enforced once hCaptcha is enabled for the form in the Web3Forms dashboard. -->
+      <div class="form-group">
+        <div class="h-captcha" data-captcha="true"></div>
+      </div>
+
       <button type="submit" id="f-submit" class="btn" style="border:none;cursor:pointer;">Send enquiry</button>
       <p class="form-note" id="f-status" role="status" aria-live="polite">Your details go only to the Keelworks inbox and are used only to reply to you.</p>
     </form>
@@ -256,9 +261,26 @@
           status.style.fontWeight = ok === undefined ? '' : '600';
         }
 
+        function captchaToken() {
+          var el = form.querySelector('textarea[name="h-captcha-response"]');
+          return el ? el.value : '';
+        }
+
+        function resetCaptcha() {
+          try { if (window.hcaptcha) window.hcaptcha.reset(); } catch (err) { /* widget not loaded */ }
+        }
+
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           var d = collect();
+
+          // Only insist on the captcha if the widget actually loaded, so a blocked script never locks people out.
+          var widgetLoaded = !!form.querySelector('textarea[name="h-captcha-response"]');
+          var token = captchaToken();
+          if (widgetLoaded && !token) {
+            setStatus('Please tick the "I am human" check above the button, then send again.', false);
+            return;
+          }
 
           button.disabled = true;
           button.textContent = 'Sending...';
@@ -273,6 +295,7 @@
               from_name: 'Keelworks website',
               replyto: d.email,
               botcheck: document.getElementById('f-botcheck').checked,
+              'h-captcha-response': token,
               'Name': d.name,
               'Email': d.email,
               'What they need help with': d.topics,
@@ -285,10 +308,12 @@
             .then(function (res) {
               if (!res.ok) throw new Error((res.j && res.j.message) || 'Submission failed');
               form.reset();
+              resetCaptcha();
               button.textContent = 'Sent';
               setStatus('Thank you, ' + d.name + '. Your enquiry has reached us and we will reply to ' + d.email + ' within one working day.', true);
             })
             .catch(function () {
+              resetCaptcha();
               button.disabled = false;
               button.textContent = 'Send enquiry';
               status.innerHTML = '';
@@ -354,5 +379,6 @@
 <script src="/assets/region-switch.js?v=20261115-1" defer></script>
 <script src="/assets/region-banner.js?v=20261115-1" defer></script>
 <script src="/assets/whatsapp.js?v=20261115-1" defer></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
