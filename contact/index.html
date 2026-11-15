@@ -114,7 +114,7 @@
   <div class="wrap">
     <div class="eyebrow">Send an enquiry</div>
     <h2>Tell us about your project</h2>
-    <p style="max-width: 650px;">Fill this in and it opens a pre-filled email to us, nothing is submitted to a server or stored anywhere else.</p>
+    <p style="max-width: 650px;">Fill this in and it comes straight to our inbox. We usually reply within one working day.</p>
 
     <form id="enquiry-form" style="max-width: 650px; margin-top: 30px;">
       <div class="form-group">
@@ -166,8 +166,11 @@
         <textarea id="f-problem" name="problem" required></textarea>
       </div>
 
-      <button type="submit" class="btn" style="border:none;cursor:pointer;">Send enquiry</button>
-      <p class="form-note">This opens your email app with the details filled in, so you can review it before it sends.</p>
+      <!-- Honeypot: hidden from people, bots tend to fill it in and get dropped by Web3Forms -->
+      <input type="checkbox" name="botcheck" id="f-botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+      <button type="submit" id="f-submit" class="btn" style="border:none;cursor:pointer;">Send enquiry</button>
+      <p class="form-note" id="f-status" role="status" aria-live="polite">Your details go only to the Keelworks inbox and are used only to reply to you.</p>
     </form>
 
     <script>
@@ -210,28 +213,90 @@
         if (locationField) locationField.value = 'Nepal';
       })();
 
-      document.getElementById('enquiry-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var name = document.getElementById('f-name').value;
-        var email = document.getElementById('f-email').value;
-        var topics = Array.prototype.slice.call(document.querySelectorAll('input[name="topic"]:checked')).map(function (el) { return el.value; });
-        var orgtype = document.getElementById('f-orgtype').value;
-        var location = document.getElementById('f-location').value;
-        var problem = document.getElementById('f-problem').value;
+      (function () {
+        // Web3Forms access key. Public by design: it only allows sending to the inbox it was issued for.
+        var ACCESS_KEY = '3d84339f-3c80-4726-8e9a-67e34816cd47';
+        var INBOX = 'naveen@keelworkstech.com';
 
-        var body = 'Name: ' + name + '\n' +
-          'Email: ' + email + '\n' +
-          'What they need help with: ' + (topics.length ? topics.join(', ') : 'Not specified') + '\n' +
-          'Organisation type: ' + orgtype + '\n' +
-          'Based in: ' + location + '\n\n' +
-          'Problem or opportunity:\n' + problem;
+        var form = document.getElementById('enquiry-form');
+        var button = document.getElementById('f-submit');
+        var status = document.getElementById('f-status');
 
-        var mailto = 'mailto:naveen@keelworkstech.com' +
-          '?subject=' + encodeURIComponent('Keelworks enquiry from ' + name) +
-          '&body=' + encodeURIComponent(body);
+        function collect() {
+          var topics = Array.prototype.slice.call(document.querySelectorAll('input[name="topic"]:checked')).map(function (el) { return el.value; });
+          return {
+            name: document.getElementById('f-name').value.trim(),
+            email: document.getElementById('f-email').value.trim(),
+            topics: topics.length ? topics.join(', ') : 'Not specified',
+            orgtype: document.getElementById('f-orgtype').value,
+            location: document.getElementById('f-location').value,
+            problem: document.getElementById('f-problem').value.trim()
+          };
+        }
 
-        window.location.href = mailto;
-      });
+        function mailtoFallback(d) {
+          var body = 'Name: ' + d.name + '\n' +
+            'Email: ' + d.email + '\n' +
+            'What they need help with: ' + d.topics + '\n' +
+            'Organisation type: ' + d.orgtype + '\n' +
+            'Based in: ' + d.location + '\n\n' +
+            'Problem or opportunity:\n' + d.problem;
+          return 'mailto:' + INBOX +
+            '?subject=' + encodeURIComponent('Keelworks enquiry from ' + d.name) +
+            '&body=' + encodeURIComponent(body);
+        }
+
+        function setStatus(text, ok) {
+          status.textContent = text;
+          status.style.color = ok === true ? '#1f7a3a' : ok === false ? '#b42318' : '';
+          status.style.fontWeight = ok === undefined ? '' : '600';
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var d = collect();
+
+          button.disabled = true;
+          button.textContent = 'Sending...';
+          setStatus('Sending your enquiry...');
+
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: ACCESS_KEY,
+              subject: 'Keelworks enquiry from ' + d.name + ' (' + d.location + ')',
+              from_name: 'Keelworks website',
+              replyto: d.email,
+              botcheck: document.getElementById('f-botcheck').checked,
+              'Name': d.name,
+              'Email': d.email,
+              'What they need help with': d.topics,
+              'Organisation type': d.orgtype,
+              'Based in': d.location,
+              'Problem or opportunity': d.problem
+            })
+          })
+            .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.success, j: j }; }); })
+            .then(function (res) {
+              if (!res.ok) throw new Error((res.j && res.j.message) || 'Submission failed');
+              form.reset();
+              button.textContent = 'Sent';
+              setStatus('Thank you, ' + d.name + '. Your enquiry has reached us and we will reply to ' + d.email + ' within one working day.', true);
+            })
+            .catch(function () {
+              button.disabled = false;
+              button.textContent = 'Send enquiry';
+              status.innerHTML = '';
+              setStatus("Sorry, that didn't go through. Please try again, or ", false);
+              var a = document.createElement('a');
+              a.href = mailtoFallback(d);
+              a.textContent = 'email us directly at ' + INBOX;
+              status.appendChild(a);
+              status.appendChild(document.createTextNode('.'));
+            });
+        });
+      })();
     </script>
   </div>
 </section>
