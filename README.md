@@ -1,8 +1,10 @@
-# keelworkshq.github.io
+# keelworkstech.com
 
 Marketing site for Keelworks (Cloud, Infrastructure, DevOps, Talent), hosted free on GitHub Pages while the business is pre-revenue. Plain static HTML/CSS, no build step, no framework, on purpose, there's no reason to add build tooling for a handful of static pages.
 
 Lives under its own account (`keelworkshq`), separate from any other GitHub account, so this stays fully independent.
+
+Served on the custom domain `keelworkstech.com` (registered at Cloudflare, DNS on Cloudflare in DNS only mode, pointing at GitHub Pages). The `CNAME` file at the repo root tells Pages which domain to serve; don't delete it. `keelworkshq.github.io` redirects to the custom domain automatically.
 
 ## Structure
 
