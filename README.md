@@ -25,7 +25,7 @@ assets/favicon-32x32.png, assets/apple-touch-icon.png   generated from favicon.s
 
 ## Contact email
 
-Currently using `naveen1806@yahoo.co.in` (personal inbox) in `contact/index.html` since there's no business domain yet. Switch to a professional address once Stage 1 of the business plan (domain + professional email) is done.
+`naveen@keelworkstech.com`, hosted on Zoho Mail (free plan). Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
 
 ## Deploy
 
