@@ -27,7 +27,7 @@ assets/og-image.png     1200x630 link preview image (og:image / twitter:image on
 
 ## Contact email
 
-`naveen@keelworkstech.com`, hosted on Zoho Mail (free plan). Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
+`hello@keelworkstech.com`, an alias on the Zoho Mail (free plan) mailbox. Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
 
 ## Deploy
 
