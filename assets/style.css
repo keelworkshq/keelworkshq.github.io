@@ -910,3 +910,19 @@ footer.site .wrap {
 @media print {
   .whatsapp-float { display: none; }
 }
+
+/* Fixed column card rows (websites page, wider services) */
+.services-grid.five {
+  grid-template-columns: repeat(5, 1fr);
+}
+.services-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1000px) {
+  .services-grid.five,
+  .services-grid.three { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .services-grid.five,
+  .services-grid.three { grid-template-columns: 1fr; }
+}

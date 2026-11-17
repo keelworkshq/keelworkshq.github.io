@@ -14,6 +14,7 @@ services/index.html     services overview
 services/cloudops/      CloudOps & DevOps service + pricing
 services/managed-it/    Managed IT Infrastructure service + pricing
 services/recruitment/   Cloud & DevOps Recruitment service
+services/websites/      Websites & Web Development service + pricing
 about/                  about page
 contact/                contact page
 nepal-digital-impact/   Keelworks Nepal initiative page (EN/Nepali toggle)
