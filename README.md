@@ -26,6 +26,10 @@ assets/favicon-32x32.png, assets/apple-touch-icon.png   generated from favicon.s
 assets/og-image.png     1200x630 link preview image (og:image / twitter:image on every page)
 ```
 
+## Visitor analytics
+
+Cloudflare Web Analytics (free, no cookies, so no consent banner needed). The beacon script sits just before `</body>` on every page, including `404.html`; add it to any new page too. The site is DNS only (not proxied), so Cloudflare cannot inject it automatically. Dashboard: Cloudflare, Analytics & Logs, Web Analytics, keelworkstech.com.
+
 ## Contact email
 
 `hello@keelworkstech.com`, the Zoho Mail (free plan) mailbox address. Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
