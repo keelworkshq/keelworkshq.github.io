@@ -18,6 +18,7 @@ services/websites/      Websites & Web Development service + pricing
 about/                  about page
 contact/                contact page
 nepal-digital-impact/   Keelworks Nepal initiative page (EN/Nepali toggle)
+404.html                custom "page not found" page (GitHub Pages serves it for any missing URL; noindex)
 assets/style.css        shared styles
 favicon.svg             favicon source (edit this, then regenerate the rest)
 favicon.ico             multi-res fallback (16/32/48px), generated from favicon.svg
@@ -27,7 +28,7 @@ assets/og-image.png     1200x630 link preview image (og:image / twitter:image on
 
 ## Contact email
 
-`hello@keelworkstech.com`, an alias on the Zoho Mail (free plan) mailbox. Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
+`hello@keelworkstech.com`, the Zoho Mail (free plan) mailbox address. Used in `contact/index.html` for the visible address, the Email Keelworks button and the enquiry form. DNS for mail (MX, SPF, DKIM selector `zmail`, DMARC) lives in Cloudflare alongside the website records.
 
 ## Deploy
 
